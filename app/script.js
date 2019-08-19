@@ -10,8 +10,8 @@
     
     Поведение:
         getStatus () : String
-        powerOn () : void
-        powerOff () : void
+        on () : void
+        off () : void
 
         getStatusCleanMode () : Boolean
         setStatusCleanMode (args: Boolean) : void
@@ -106,7 +106,8 @@ var rvc = new RobotVacuumCleaner();
 
     Состояние :
         getStatus () : void
-        setStatus (args : Boolean) : void
+        on () : void
+        off () : void
 
         getCurrentMode () :  String
         nextMode () : void
