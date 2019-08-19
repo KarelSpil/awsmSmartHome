@@ -63,8 +63,9 @@ RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
         if (this._statusGarbageBag >= 0 && this._statusGarbageBag < 100) {
             this._statusGarbageBag += addTrashPercent;
         } else {
-            console.log('Garbege Bag is full, please use method cleanGarbageBag ().');
+            throw new Error('Garbege Bag is full, please use method cleanGarbageBag ().')
         }
+        
     }
 };
 RobotVacuumCleaner.prototype.__isNumber = function (value) {
@@ -80,18 +81,14 @@ RobotVacuumCleaner.prototype.cleanGarbageBag = function () {
 RobotVacuumCleaner.prototype.getStatusBatteryCharge = function () {
     return  this._statusBattery;
 };
-RobotVacuumCleaner.prototype.goToCharge = function (chargePercent) {
-    if (this.__isCorrectParam (chargePercent) && chargePercent <= 20) {
-	this._statusBattery = chargePercent;
-	for (var i = 0; this._statusBattery <= 100; i++) {
-		this._statusBattery += i;
-	};
-	console.log('The battery is charged to ' + this._statusBattery + '%.');
-    } else if (this.__isCorrectParam (chargePercent) && this._statusBattery > 20) {
-		console.log('No battery charge required.');
-    }
+RobotVacuumCleaner.prototype.goToCharge = function (batteryPercent) {
+    for (var i = 0; this._statusBattery < 100; ++i){
+        if (this.__isNumber(batteryPercent) && batteryPercent < 100){
+            this._statusBattery = batteryPercent;
+        };
+        this._statusBattery += i;
+    };
 };
-
 
 var rvc = new RobotVacuumCleaner();
 
