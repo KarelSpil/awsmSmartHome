@@ -58,14 +58,8 @@ RobotVacuumCleaner.prototype.setStatusCleanMode = function (bool) {
 RobotVacuumCleaner.prototype.getStatusGarbageBag = function () {
     return this._statusGarbageBag;
 };
-RobotVacuumCleaner.prototype.__isCorrectParam = function (value) {
-    if (typeof value == 'number' && !isNaN(value)) {
-        return true;
-    }
-    return false;
-};
 RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
-    if (this.__isCorrectParam (addTrashPercent)) {
+    if (this.__isNumber (addTrashPercent)) {
         if (this._statusGarbageBag >= 0 && this._statusGarbageBag < 100) {
             this._statusGarbageBag += addTrashPercent;
         } else {
@@ -73,9 +67,14 @@ RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
         }
     }
 };
+RobotVacuumCleaner.prototype.__isNumber = function (value) {
+    if (typeof value == 'number' && !isNaN(value)) {
+        return true;
+    }
+    return false;
+};
 RobotVacuumCleaner.prototype.cleanGarbageBag = function () {
     this._statusGarbageBag = 0;
-    console.log('I cleared my garbage bag and my status Garbage Bag = ' + this._statusGarbageBag + '.');
 };
 
 RobotVacuumCleaner.prototype.getStatusBatteryCharge = function () {
