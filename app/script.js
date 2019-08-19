@@ -31,11 +31,7 @@ function RobotVacuumCleaner () {
 };
 
 RobotVacuumCleaner.prototype.getStatus = function () {
-    if (this._status === true) {
-        return true;
-    } else {
-        return false;
-    }
+    return this._status;
 };
 RobotVacuumCleaner.prototype.on = function () {
     this._status = true;
@@ -107,3 +103,14 @@ var rvc = new RobotVacuumCleaner();
         getCurrentMode () :  String
         nextMode () : void
         previousMode () : void */
+
+function Fan () {
+    this._status      = false;
+    this._currentMode = '';
+    this._mods = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
+};
+
+Fan.prototype.getStatus = function () {
+    return this._status;
+};
+
