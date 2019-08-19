@@ -45,15 +45,14 @@ RobotVacuumCleaner.prototype.off = function () {
 };
 
 RobotVacuumCleaner.prototype.getStatusCleanMode = function () {
-    if (this._cleanMode === true) {
-        console.log('Robot vacuum cleaner started cleaning.');
-    } else {
-        console.log('Robot vacuum cleaner does not clean at the moment.');
-    }
+    return this._cleanMode;
 };
 RobotVacuumCleaner.prototype.setStatusCleanMode = function (bool) {
-    (typeof bool =='boolean' && this._cleanMode != bool) ?
-        this._cleanMode = bool : this._cleanMode = false;
+    if (typeof bool == 'boolean' && this._cleanMode != bool) {
+        this._cleanMode = bool;
+    } else {
+        this._cleanMode = false;
+    }
 };
 
 RobotVacuumCleaner.prototype.getStatusGarbageBag = function () {
