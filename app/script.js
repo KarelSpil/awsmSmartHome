@@ -24,10 +24,10 @@
         goToCharge (args : Number) : void */
 
 function RobotVacuumCleaner () {
-    this._status = false;
-    this._cleanMode = false;
+    this._status           = false;
+    this._cleanMode        = false;
     this._statusGarbageBag = 0;
-    this._statusBattery = 100;
+    this._statusBattery    = 100;
 };
 
 RobotVacuumCleaner.prototype.getStatus = function () {
@@ -92,8 +92,9 @@ var rvc = new RobotVacuumCleaner();
 
     Поведение :
         _status : Boolean
-        _currentMode: String
         _mods : [String, String, String, .....]
+        _currentMode: String
+        __currentIndex : Number
 
     Состояние :
         getStatus () : void
@@ -105,12 +106,46 @@ var rvc = new RobotVacuumCleaner();
         previousMode () : void */
 
 function Fan () {
-    this._status      = false;
-    this._currentMode = '';
-    this._mods = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
+    this._status        = false;
+    this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
+    this._currentMode   = 'Speed 1';
+    this.__currentIndex = null;
 };
 
 Fan.prototype.getStatus = function () {
     return this._status;
 };
+Fan.prototype.on = function () {
+    this._status = true;
+};
+Fan.prototype.off = function () {
+    this._status = false;
+};
+
+Fan.prototype.getCurrentMode = function () {
+    return this._currentMode;
+};
+Fan.prototype.nextMode = function () {
+    this.__getIndex(this._mods, this._currentMode);
+    if(this.__currentIndex >= this._mods.length - 1) {
+        this._currentMode = this._mods[0];
+        this.__currentIndex = null;
+    } else {
+        this._currentMode = this._mods[++this.__currentIndex];
+    }
+};
+Fan.prototype.previousMode = function () {
+    this.__getIndex(this._mods, this._currentMode);
+    if(this.__currentIndex == 0) {
+        this._currentMode = this._mods[this._mods.length - 1];
+        this.__getIndex(this._mods, this._currentMode);
+    } else {
+        this._currentMode = this._mods[--this.__currentIndex];
+    }
+};
+Fan.prototype.__getIndex = function (arr, currentMod) {
+    this.__currentIndex = arr.indexOf(currentMod);
+};
+
+var fan = new Fan ();
 
