@@ -32,15 +32,15 @@ function RobotVacuumCleaner () {
 
 RobotVacuumCleaner.prototype.getStatus = function () {
     if (this._status === true) {
-        console.log('Robot vacuum cleaner power on and ready to get started.');
+        return true;
     } else {
-        console.log('Robot vacuum cleaner power off.');
+        return false;
     }
 };
-RobotVacuumCleaner.prototype.powerOn = function () {
+RobotVacuumCleaner.prototype.on = function () {
     this._status = true;
 };
-RobotVacuumCleaner.prototype.powerOff = function () {
+RobotVacuumCleaner.prototype.off = function () {
     this._status = false;
 };
 
