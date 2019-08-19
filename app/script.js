@@ -89,9 +89,9 @@ RobotVacuumCleaner.prototype.goToCharge = function (chargePercent) {
 		this._statusBattery += i;
 	};
 	console.log('The battery is charged to ' + this._statusBattery + '%.');
-   } else if (this.__isCorrectParam (chargePercent) && this._statusBattery > 20) {
+    } else if (this.__isCorrectParam (chargePercent) && this._statusBattery > 20) {
 		console.log('No battery charge required.');
-   }
+    }
 };
 
 
