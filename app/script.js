@@ -58,8 +58,8 @@ RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
     if (this.__isNumber (addTrashPercent)) {
         if (this._statusGarbageBag + addTrashPercent < 100) {
             this._statusGarbageBag += addTrashPercent;
-        } else {}
-    }
+        } else {};
+    };
 };
 RobotVacuumCleaner.prototype.__isNumber = function (value) {
     if (typeof value == 'number' && !isNaN(value)) {
@@ -78,7 +78,7 @@ RobotVacuumCleaner.prototype.goToCharge = function (batteryPercent) {
     for (var i = 0; this._statusBattery < 100; ++i){
         if (this.__isNumber(batteryPercent) && batteryPercent < 100){
             this._statusBattery = batteryPercent;
-        };
+        } else {};
         this._statusBattery += i;
     };
 };
@@ -90,8 +90,7 @@ var rvc = new RobotVacuumCleaner();
     Поведение :
         _status : Boolean
         _mods : [String, String, String, .....]
-        _currentMode: String
-        __currentIndex : Number
+        _currentMode: Number
 
     Состояние :
         getStatus () : void
@@ -105,8 +104,7 @@ var rvc = new RobotVacuumCleaner();
 function Fan () {
     this._status        = false;
     this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
-    this._currentMode   = 'Speed 1';
-    this.__currentIndex = null;
+    this._currentMode   = 0;
 };
 
 Fan.prototype.getStatus = function () {
@@ -120,28 +118,21 @@ Fan.prototype.off = function () {
 };
 
 Fan.prototype.getCurrentMode = function () {
-    return this._currentMode;
+    return this._mods[this._currentMode];
 };
 Fan.prototype.nextMode = function () {
-    this.__getIndex(this._mods, this._currentMode);
-    if(this.__currentIndex >= this._mods.length - 1) {
-        this._currentMode = this._mods[0];
-        this.__currentIndex = null;
+    if(this._currentMode >= --this._mods.length) {
+        this._currentMode = 0;
     } else {
-        this._currentMode = this._mods[++this.__currentIndex];
-    }
+        this._currentMode = ++this._currentMode;
+    };
 };
 Fan.prototype.previousMode = function () {
-    this.__getIndex(this._mods, this._currentMode);
-    if(this.__currentIndex == 0) {
-        this._currentMode = this._mods[this._mods.length - 1];
-        this.__getIndex(this._mods, this._currentMode);
+    if(this._currentMode == 0) {
+        this._currentMode = this._mods.length - 1;
     } else {
-        this._currentMode = this._mods[--this.__currentIndex];
-    }
-};
-Fan.prototype.__getIndex = function (arr, currentMod) {
-    this.__currentIndex = arr.indexOf(currentMod);
+        this._currentMode = --this._currentMode;
+    };
 };
 
 var fan = new Fan ();
