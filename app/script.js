@@ -56,12 +56,9 @@ RobotVacuumCleaner.prototype.getStatusGarbageBag = function () {
 };
 RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
     if (this.__isNumber (addTrashPercent)) {
-        if (this._statusGarbageBag >= 0 && this._statusGarbageBag < 100) {
+        if (this._statusGarbageBag + addTrashPercent < 100) {
             this._statusGarbageBag += addTrashPercent;
-        } else {
-            throw new Error('Garbege Bag is full, please use method cleanGarbageBag ().')
-        }
-        
+        } else {}
     }
 };
 RobotVacuumCleaner.prototype.__isNumber = function (value) {
