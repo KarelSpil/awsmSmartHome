@@ -141,3 +141,46 @@ class Fan {
 
 var fan = new Fan ('fan');
 
+/*class Home
+    state
+        _address: string
+        _devices: []
+    behaviour
+        getAddress(): string
+        setAddress(string): void
+
+        addDevice(device): void
+        getDeviceByName(string): device
+        getAllDevices(): [device]
+        deleteDeviceByName(string): void */
+
+class Home {
+    constructor () {
+        this._address = '';
+        this._devices = [];
+    }
+    get address () {
+        return this._address;
+    }
+    set address (value) {
+        if (typeof value === 'string') {
+            this._address = value;
+        } else {}
+    }
+    addDevice (device) {
+        this._devices.push(device);
+    }
+    getDeviceByName (string) {
+        return this._devices.indexOf(string);
+    }
+    getAllDevices () {
+        return this._devices;
+    }
+    // deleteDeviceByName (string) {
+    //     this._devices.forEach((object){
+
+    //     })
+    // }
+}
+
+const myHome = new Home ();
