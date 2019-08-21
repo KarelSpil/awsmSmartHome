@@ -168,7 +168,7 @@ class Fan {
             this._currentMode = --this._currentMode;
         };
     }
-}
+};
 
 var fan = new Fan ('fan');
 
