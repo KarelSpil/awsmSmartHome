@@ -3,6 +3,7 @@
 /*Класс RobotVacuumCleaner
     
     Состояние:
+        _name : String
         _status : Boolean
         _cleanMode : Boolean
         _statusGarbageBag : Number
@@ -23,7 +24,8 @@
         getStatusBatteryCharge () : Number
         goToCharge (args : Number) : void */
 
-function RobotVacuumCleaner () {
+function RobotVacuumCleaner (name) {
+    this._name             = name;
     this._status           = false;
     this._cleanMode        = false;
     this._statusGarbageBag = 0;
@@ -83,11 +85,12 @@ RobotVacuumCleaner.prototype.goToCharge = function (batteryPercent) {
     };
 };
 
-var rvc = new RobotVacuumCleaner();
+var rvc = new RobotVacuumCleaner("vacuum");
 
 /*Класс Fan
 
     Поведение :
+        _name : String
         _status : Boolean
         _mods : [String, String, String, .....]
         _currentMode: Number
@@ -100,40 +103,6 @@ var rvc = new RobotVacuumCleaner();
         getCurrentMode () :  String
         nextMode () : void
         previousMode () : void */
-
-/*function Fan () {
-    this._status        = false;
-    this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
-    this._currentMode   = 0;
-};
-
-Fan.prototype.getStatus = function () {
-    return this._status;
-};
-Fan.prototype.on = function () {
-    this._status = true;
-};
-Fan.prototype.off = function () {
-    this._status = false;
-};
-
-Fan.prototype.getCurrentMode = function () {
-    return this._mods[this._currentMode];
-};
-Fan.prototype.nextMode = function () {
-    if(this._currentMode >= --this._mods.length) {
-        this._currentMode = 0;
-    } else {
-        this._currentMode = ++this._currentMode;
-    };
-};
-Fan.prototype.previousMode = function () {
-    if(this._currentMode == 0) {
-        this._currentMode = this._mods.length - 1;
-    } else {
-        this._currentMode = --this._currentMode;
-    };
-}; */
 
 class Fan {
     constructor(name) {
