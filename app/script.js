@@ -101,7 +101,7 @@ var rvc = new RobotVacuumCleaner();
         nextMode () : void
         previousMode () : void */
 
-function Fan () {
+/*function Fan () {
     this._status        = false;
     this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
     this._currentMode   = 0;
@@ -133,7 +133,42 @@ Fan.prototype.previousMode = function () {
     } else {
         this._currentMode = --this._currentMode;
     };
-};
+}; */
 
-var fan = new Fan ();
+class Fan {
+    constructor(name) {
+        this._name          = name;
+        this._status        = false;
+        this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
+        this._currentMode   = 0;
+    }
+    getStatus () {
+        return this._status;
+    }
+    on () {
+        this._status = true;
+    }
+    off () {
+        this._status = false;
+    }
+    getCurrentMode () {
+        return this._mods[this._currentMode];
+    }
+    nextMode () {
+        if(this._currentMode >= this._mods.length - 1) {
+            this._currentMode = 0;
+        } else {
+            this._currentMode = ++this._currentMode;
+        };
+    }
+    previousMode () {
+        if(this._currentMode == 0) {
+            this._currentMode = this._mods.length - 1;
+        } else {
+            this._currentMode = --this._currentMode;
+        };
+    }
+}
+
+var fan = new Fan ('fan');
 
