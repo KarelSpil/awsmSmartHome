@@ -1,5 +1,21 @@
 'use strict';
 
+class GeneralClass {
+    constructor (name) {
+        this._name   = name;
+        this._status = false;
+    }
+    getStatus () {
+        return this._status;
+    }
+    on () {
+        this._status = true;
+    }
+    off () {
+        this._status = false;
+    }
+};
+const gc = new GeneralClass('General');
 /*Класс RobotVacuumCleaner
     
     Состояние:
@@ -24,23 +40,14 @@
         getStatusBatteryCharge () : Number
         goToCharge (args : Number) : void */
 
-function RobotVacuumCleaner (name) {
-    this._name             = name;
-    this._status           = false;
+function RobotVacuumCleaner () {
+    GeneralClass.call(this);
     this._cleanMode        = false;
     this._statusGarbageBag = 0;
     this._statusBattery    = 100;
 };
-
-RobotVacuumCleaner.prototype.getStatus = function () {
-    return this._status;
-};
-RobotVacuumCleaner.prototype.on = function () {
-    this._status = true;
-};
-RobotVacuumCleaner.prototype.off = function () {
-    this._status = false;
-};
+RobotVacuumCleaner.prototype = Object.create(GeneralClass.prototype);
+RobotVacuumCleaner.prototype.constructor = RobotVacuumCleaner;
 
 RobotVacuumCleaner.prototype.getStatusCleanMode = function () {
     return this._cleanMode;
@@ -85,7 +92,7 @@ RobotVacuumCleaner.prototype.goToCharge = function (batteryPercent) {
     };
 };
 
-var rvc = new RobotVacuumCleaner("vacuum");
+const rvc = new RobotVacuumCleaner("vacuum");
 
 /*Класс Fan
 
@@ -104,21 +111,11 @@ var rvc = new RobotVacuumCleaner("vacuum");
         nextMode () : void
         previousMode () : void */
 
-class Fan {
+class Fan extends GeneralClass {
     constructor(name) {
-        this._name          = name;
-        this._status        = false;
+        super(name);
         this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
         this._currentMode   = 0;
-    }
-    getStatus () {
-        return this._status;
-    }
-    on () {
-        this._status = true;
-    }
-    off () {
-        this._status = false;
     }
     getCurrentMode () {
         return this._mods[this._currentMode];
@@ -138,8 +135,7 @@ class Fan {
         };
     }
 };
-
-var fan = new Fan ('fan');
+const fan = new Fan ('fan');
 
 /*class Home
     state
