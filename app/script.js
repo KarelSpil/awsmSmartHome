@@ -167,16 +167,19 @@ class Home {
         this._devices.push(device);
     }
     getDeviceByName (string) {
-        return this._devices.indexOf(string);
+        function returnArrValue (value) {
+            if (value.hasOwnProperty('_name') && value._name === string) {
+                return value;
+            } else {};
+        };
+        return this._devices.forEach(returnArrValue);
     }
     getAllDevices () {
         return this._devices;
     }
-    // deleteDeviceByName (string) {
-    //     this._devices.forEach((object){
-
-    //     })
-    // }
+    deleteDeviceByName () {
+    
+    }
 }
 
 const myHome = new Home ();
