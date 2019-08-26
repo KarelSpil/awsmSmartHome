@@ -15,6 +15,7 @@ class GeneralClass {
         this._status = false;
     }
 };
+
 const gc = new GeneralClass('General');
 
 /*Class RobotVacuumCleaner
