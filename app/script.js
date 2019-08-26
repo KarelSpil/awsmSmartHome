@@ -89,7 +89,7 @@ class RobotVacuumCleaner extends GeneralClass {
     }
 };
 
-const rvc = new RobotVacuumCleaner("vacuum");
+const rvc = new RobotVacuumCleaner('vacuum');
 
 /*Класс Fan
 
@@ -156,7 +156,7 @@ class Home {
         return this._address;
     }
     set address (value) {
-        if (typeof value === 'string') {
+        if (typeof value == 'string') {
             this._address = value;
         }
     }
@@ -164,20 +164,29 @@ class Home {
         this._devices.push(device);
     }
     getDeviceByName (string) {
-        let inMemory;
-        this._devices.forEach((obj) => {
-            if (obj._name == string){
-                inMemory = obj;
+        let selectedDevice;
+        this._devices.forEach((device) => {
+            if (device._name == string){
+                selectedDevice = device;
             }
         });
-        return inMemory;
+        return selectedDevice;
     }
     getAllDevices () {
         return this._devices;
     }
-    // deleteDeviceByName () {
-    
-    // }
+    deleteDeviceByNameFilter (string) {
+        this._devices = this._devices.filter((device) => device._name != string);
+    }
+    deleteDeviceByNameAnotherWay (string) {
+        this._devices.every((device) => {
+            if (device._name != string){
+                return true;
+            } else {
+                this._devices.splice(this._devices.indexOf(device), this._devices.indexOf(device))
+            }
+        });
+    }
 }
 
 const myHome = new Home ();
@@ -185,4 +194,5 @@ myHome.address = '101.10.164.1';
 myHome.addDevice(new RobotVacuumCleaner('robo1'));
 myHome.addDevice(new Fan('fan1'));
 myHome.addDevice(new Fan('fan2'));
+myHome.addDevice(new Fan('fan3'));
 
