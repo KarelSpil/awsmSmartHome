@@ -16,16 +16,17 @@ class GeneralClass {
     }
 };
 const gc = new GeneralClass('General');
-/*Класс RobotVacuumCleaner
+
+/*Class RobotVacuumCleaner
     
-    Состояние:
+    State :
         _name : String
         _status : Boolean
         _cleanMode : Boolean
         _statusGarbageBag : Number
         _statusBattery : Number
     
-    Поведение:
+    Behaviour :
         getStatus () : String
         on () : void
         off () : void
@@ -39,6 +40,7 @@ const gc = new GeneralClass('General');
 
         getStatusBatteryCharge () : Number
         goToCharge (args : Number) : void */
+
 class RobotVacuumCleaner extends GeneralClass {
     constructor(name) {
         super(name);
@@ -91,15 +93,15 @@ class RobotVacuumCleaner extends GeneralClass {
 
 const rvc = new RobotVacuumCleaner('vacuum');
 
-/*Класс Fan
+/*Class Fan
 
-    Поведение :
+    State :
         _name : String
         _status : Boolean
         _mods : [String, String, String, .....]
         _currentMode: Number
 
-    Состояние :
+    Behaviour :
         getStatus () : void
         on () : void
         off () : void
@@ -132,13 +134,16 @@ class Fan extends GeneralClass {
         };
     }
 };
+
 const fan = new Fan ('fan');
 
 /*class Home
-    state
+
+    State :
         _address: string
         _devices: []
-    behaviour
+
+    Behaviour :
         getAddress(): string
         setAddress(string): void
 
