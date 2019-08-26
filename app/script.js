@@ -39,57 +39,54 @@ const gc = new GeneralClass('General');
 
         getStatusBatteryCharge () : Number
         goToCharge (args : Number) : void */
-
-function RobotVacuumCleaner () {
-    GeneralClass.call(this);
-    this._cleanMode        = false;
-    this._statusGarbageBag = 0;
-    this._statusBattery    = 100;
-};
-RobotVacuumCleaner.prototype = Object.create(GeneralClass.prototype);
-RobotVacuumCleaner.prototype.constructor = RobotVacuumCleaner;
-
-RobotVacuumCleaner.prototype.getStatusCleanMode = function () {
-    return this._cleanMode;
-};
-RobotVacuumCleaner.prototype.setStatusCleanMode = function (bool) {
-    if (typeof bool == 'boolean' && this._cleanMode != bool) {
-        this._cleanMode = bool;
-    } else {
-        this._cleanMode = false;
+class RobotVacuumCleaner extends GeneralClass {
+    constructor(name) {
+        super(name);
+        this._cleanMode        = false;
+        this._statusGarbageBag = 0;
+        this._statusBattery    = 100;
     }
-};
-
-RobotVacuumCleaner.prototype.getStatusGarbageBag = function () {
-    return this._statusGarbageBag;
-};
-RobotVacuumCleaner.prototype.addTrash = function (addTrashPercent) {
-    if (this.__isNumber (addTrashPercent)) {
-        if (this._statusGarbageBag + addTrashPercent < 100) {
-            this._statusGarbageBag += addTrashPercent;
-        } else {};
-    };
-};
-RobotVacuumCleaner.prototype.__isNumber = function (value) {
-    if (typeof value == 'number' && !isNaN(value)) {
-        return true;
+    getStatusCleanMode() {
+        return this._cleanMode;
     }
-    return false;
-};
-RobotVacuumCleaner.prototype.cleanGarbageBag = function () {
-    this._statusGarbageBag = 0;
-};
-
-RobotVacuumCleaner.prototype.getStatusBatteryCharge = function () {
-    return  this._statusBattery;
-};
-RobotVacuumCleaner.prototype.goToCharge = function (batteryPercent) {
-    for (var i = 0; this._statusBattery < 100; ++i){
-        if (this.__isNumber(batteryPercent) && batteryPercent < 100){
-            this._statusBattery = batteryPercent;
-        } else {};
-        this._statusBattery += i;
-    };
+    setStatusCleanMode(bool) {
+        if (typeof bool == 'boolean' && this._cleanMode != bool) {
+            this._cleanMode = bool;
+        }
+        else {
+            this._cleanMode = false;
+        }
+    }
+    getStatusGarbageBag() {
+        return this._statusGarbageBag;
+    }
+    addTrash(addTrashPercent) {
+        if (this.__isNumber(addTrashPercent)) {
+            if (this._statusGarbageBag + addTrashPercent < 100) {
+                this._statusGarbageBag += addTrashPercent;
+            };
+        };
+    }
+    __isNumber(value) {
+        if (typeof value == 'number' && !isNaN(value)) {
+            return true;
+        }
+        return false;
+    }
+    cleanGarbageBag() {
+        this._statusGarbageBag = 0;
+    }
+    getStatusBatteryCharge() {
+        return this._statusBattery;
+    }
+    goToCharge(batteryPercent) {
+        for (var i = 0; this._statusBattery < 100; ++i) {
+            if (this.__isNumber(batteryPercent) && batteryPercent < 100) {
+                this._statusBattery = batteryPercent;
+            }
+            this._statusBattery += i;
+        };
+    }
 };
 
 const rvc = new RobotVacuumCleaner("vacuum");
@@ -124,14 +121,14 @@ class Fan extends GeneralClass {
         if(this._currentMode >= this._mods.length - 1) {
             this._currentMode = 0;
         } else {
-            this._currentMode = ++this._currentMode;
+            ++this._currentMode;
         };
     }
     previousMode () {
         if(this._currentMode == 0) {
             this._currentMode = this._mods.length - 1;
         } else {
-            this._currentMode = --this._currentMode;
+            --this._currentMode;
         };
     }
 };
@@ -161,25 +158,25 @@ class Home {
     set address (value) {
         if (typeof value === 'string') {
             this._address = value;
-        } else {}
+        }
     }
-    addDevice (device) {
-        this._devices.push(device);
-    }
-    getDeviceByName (string) {
-        function returnArrValue (value) {
-            if (value.hasOwnProperty('_name') && value._name === string) {
-                return value;
-            } else {};
-        };
-        return this._devices.forEach(returnArrValue);
-    }
-    getAllDevices () {
-        return this._devices;
-    }
-    deleteDeviceByName () {
+    // addDevice (device) {
+    //     this._devices.push(device);
+    // }
+    // getDeviceByName (string) {
+    //     function returnArrValue (value) {
+    //         if (value.hasOwnProperty('_name') && value._name === string) {
+    //             return value;
+    //         } else {};
+    //     };
+    //     return this._devices.forEach(returnArrValue);
+    // }
+    // getAllDevices () {
+    //     return this._devices;
+    // }
+    // deleteDeviceByName () {
     
-    }
+    // }
 }
 
 const myHome = new Home ();
