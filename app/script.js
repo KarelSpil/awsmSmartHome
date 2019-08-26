@@ -183,7 +183,10 @@ class Home {
             if (device._name != string){
                 return true;
             } else {
-                this._devices.splice(this._devices.indexOf(device), this._devices.indexOf(device))
+                this._devices.splice(
+                    this._devices.indexOf(device), 
+                    this._devices.indexOf(device)
+                    )
             }
         });
     }
