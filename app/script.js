@@ -160,23 +160,29 @@ class Home {
             this._address = value;
         }
     }
-    // addDevice (device) {
-    //     this._devices.push(device);
-    // }
-    // getDeviceByName (string) {
-    //     function returnArrValue (value) {
-    //         if (value.hasOwnProperty('_name') && value._name === string) {
-    //             return value;
-    //         } else {};
-    //     };
-    //     return this._devices.forEach(returnArrValue);
-    // }
-    // getAllDevices () {
-    //     return this._devices;
-    // }
+    addDevice (device) {
+        this._devices.push(device);
+    }
+    getDeviceByName (string) {
+        let inMemory;
+        this._devices.forEach((obj) => {
+            if (obj._name == string){
+                inMemory = obj;
+            }
+        });
+        return inMemory;
+    }
+    getAllDevices () {
+        return this._devices;
+    }
     // deleteDeviceByName () {
     
     // }
 }
 
 const myHome = new Home ();
+myHome.address = '101.10.164.1';
+myHome.addDevice(new RobotVacuumCleaner('robo1'));
+myHome.addDevice(new Fan('fan1'));
+myHome.addDevice(new Fan('fan2'));
+
