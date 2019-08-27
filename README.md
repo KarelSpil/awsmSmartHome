@@ -71,20 +71,3 @@ class Home
         getAllDevices(): [device]
         deleteDeviceByName(string): void
 ```
-
-#### Declared class
-
-Each `class` in the code is already declared.
-```js
-//GeneralClass 
-const gc = new GeneralClass('General');
-
-//RobotVacuumCleaner
-const rvc = new RobotVacuumCleaner('vacuum');
-
-//Fan
-const fan = new Fan ('fan');
-
-//Home
-const myHome = new Home ();
-```
