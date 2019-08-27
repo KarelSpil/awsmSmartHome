@@ -16,8 +16,6 @@ class GeneralClass {
     }
 };
 
-const gc = new GeneralClass('General');
-
 /*Class RobotVacuumCleaner
     
     State :
@@ -92,8 +90,6 @@ class RobotVacuumCleaner extends GeneralClass {
     }
 };
 
-const rvc = new RobotVacuumCleaner('vacuum');
-
 /*Class Fan
 
     State :
@@ -135,8 +131,6 @@ class Fan extends GeneralClass {
         };
     }
 };
-
-const fan = new Fan ('fan');
 
 /*class Home
 
@@ -196,12 +190,5 @@ class Home {
             }
         });
     }
-}
-
-const myHome = new Home ();
-myHome.address = '101.10.164.1';
-myHome.addDevice(new RobotVacuumCleaner('robo1'));
-myHome.addDevice(new Fan('fan1'));
-myHome.addDevice(new Fan('fan2'));
-myHome.addDevice(new Fan('fan3'));
+};
 
