@@ -3,6 +3,7 @@
       <img alt="logo" src="https://imgshare.io/images/2019/08/26/1566845462045.png" width="150" height="150">
   </a>
   <h1 align="center">awsmSmartHome</h1>
+  <h3 align="center">"Do what is GREAT"</h1>
   <p align="center">The testing project for the JS course.</p>
 </p>
 
