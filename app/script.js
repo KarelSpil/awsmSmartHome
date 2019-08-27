@@ -1,17 +1,17 @@
 'use strict';
 
 class GeneralClass {
-    constructor (name) {
+    constructor(name) {
         this._name   = name;
         this._status = false;
     }
-    getStatus () {
+    getStatus() {
         return this._status;
     }
-    on () {
+    on() {
         this._status = true;
     }
-    off () {
+    off() {
         this._status = false;
     }
 };
@@ -26,19 +26,19 @@ class GeneralClass {
         _statusBattery : Number
     
     Behaviour :
-        getStatus () : String
-        on () : void
-        off () : void
+        getStatus() : String
+        on() : void
+        off() : void
 
-        getStatusCleanMode () : Boolean
-        setStatusCleanMode (args: Boolean) : void
+        getStatusCleanMode() : Boolean
+        setStatusCleanMode(args: Boolean) : void
 
-        getStatusGarbageBag () : Number
-        addTrash (args : Number) : void
-        cleanGarbageBag () : void
+        getStatusGarbageBag() : Number
+        addTrash(args : Number) : void
+        cleanGarbageBag() : void
 
-        getStatusBatteryCharge () : Number
-        goToCharge (args : Number) : void */
+        getStatusBatteryCharge() : Number
+        goToCharge(args : Number) : void */
 
 class RobotVacuumCleaner extends GeneralClass {
     constructor(name) {
@@ -51,7 +51,7 @@ class RobotVacuumCleaner extends GeneralClass {
         return this._cleanMode;
     }
     setStatusCleanMode(bool) {
-        if (typeof bool == 'boolean' && this._cleanMode != bool) {
+        if(typeof bool == 'boolean' && this._cleanMode != bool) {
             this._cleanMode = bool;
         }
         else {
@@ -62,14 +62,14 @@ class RobotVacuumCleaner extends GeneralClass {
         return this._statusGarbageBag;
     }
     addTrash(addTrashPercent) {
-        if (this.__isNumber(addTrashPercent)) {
-            if (this._statusGarbageBag + addTrashPercent < 100) {
+        if(this.__isNumber(addTrashPercent)) {
+            if(this._statusGarbageBag + addTrashPercent < 100) {
                 this._statusGarbageBag += addTrashPercent;
             };
         };
     }
     __isNumber(value) {
-        if (typeof value == 'number' && !isNaN(value)) {
+        if(typeof value == 'number' && !isNaN(value)) {
             return true;
         }
         return false;
@@ -81,7 +81,7 @@ class RobotVacuumCleaner extends GeneralClass {
         return this._statusBattery;
     }
     goToCharge(batteryPercent) {
-        for (var i = 0; this._statusBattery < 100; ++i) {
+        for(var i = 0; this._statusBattery < 100; ++i) {
             if (this.__isNumber(batteryPercent) && batteryPercent < 100) {
                 this._statusBattery = batteryPercent;
             }
@@ -99,13 +99,13 @@ class RobotVacuumCleaner extends GeneralClass {
         _currentMode: Number
 
     Behaviour :
-        getStatus () : void
-        on () : void
-        off () : void
+        getStatus() : void
+        on() : void
+        off() : void
 
-        getCurrentMode () :  String
-        nextMode () : void
-        previousMode () : void */
+        getCurrentMode() :  String
+        nextMode() : void
+        previousMode() : void */
 
 class Fan extends GeneralClass {
     constructor(name) {
@@ -113,17 +113,17 @@ class Fan extends GeneralClass {
         this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
         this._currentMode   = 0;
     }
-    getCurrentMode () {
+    getCurrentMode() {
         return this._mods[this._currentMode];
     }
-    nextMode () {
+    nextMode() {
         if(this._currentMode >= this._mods.length - 1) {
             this._currentMode = 0;
         } else {
             ++this._currentMode;
         };
     }
-    previousMode () {
+    previousMode() {
         if(this._currentMode == 0) {
             this._currentMode = this._mods.length - 1;
         } else {
@@ -148,39 +148,39 @@ class Fan extends GeneralClass {
         deleteDeviceByName(string): void */
 
 class Home {
-    constructor () {
+    constructor() {
         this._address = '';
         this._devices = [];
     }
-    get address () {
+    get address() {
         return this._address;
     }
-    set address (value) {
-        if (typeof value == 'string') {
+    set address(value) {
+        if(typeof value == 'string') {
             this._address = value;
         }
     }
-    addDevice (device) {
+    addDevice(device) {
         this._devices.push(device);
     }
-    getDeviceByName (string) {
+    getDeviceByName(string) {
         let selectedDevice;
         this._devices.forEach((device) => {
-            if (device._name == string){
+            if(device._name == string){
                 selectedDevice = device;
             }
         });
         return selectedDevice;
     }
-    getAllDevices () {
+    getAllDevices() {
         return this._devices;
     }
-    deleteDeviceByNameFilter (string) {
+    deleteDeviceByNameFilter(string) {
         this._devices = this._devices.filter((device) => device._name != string);
     }
-    deleteDeviceByNameAnotherWay (string) {
+    deleteDeviceByNameAnotherWay(string) {
         this._devices.every((device) => {
-            if (device._name != string){
+            if(device._name != string){
                 return true;
             } else {
                 this._devices.splice(
