@@ -2,7 +2,7 @@
 
 class GeneralClass {
     constructor(name) {
-        this._name   = name;
+        this.name = name;
         this._status = false;
     }
     getStatus() {
@@ -17,14 +17,12 @@ class GeneralClass {
 };
 
 /*Class RobotVacuumCleaner
-    
     State :
-        _name : String
+        name : String
         _status : Boolean
         _cleanMode : Boolean
         _statusGarbageBag : Number
         _statusBattery : Number
-    
     Behaviour :
         getStatus() : String
         on() : void
@@ -43,9 +41,9 @@ class GeneralClass {
 class RobotVacuumCleaner extends GeneralClass {
     constructor(name) {
         super(name);
-        this._cleanMode        = false;
+        this._cleanMode = false;
         this._statusGarbageBag = 0;
-        this._statusBattery    = 100;
+        this._statusBattery = 100;
     }
     getStatusCleanMode() {
         return this._cleanMode;
@@ -91,13 +89,11 @@ class RobotVacuumCleaner extends GeneralClass {
 };
 
 /*Class Fan
-
     State :
-        _name : String
+        name : String
         _status : Boolean
         _mods : [String, String, String, .....]
         _currentMode: Number
-
     Behaviour :
         getStatus() : void
         on() : void
@@ -110,8 +106,8 @@ class RobotVacuumCleaner extends GeneralClass {
 class Fan extends GeneralClass {
     constructor(name) {
         super(name);
-        this._mods          = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
-        this._currentMode   = 0;
+        this._mods = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
+        this._currentMode = 0;
     }
     getCurrentMode() {
         return this._mods[this._currentMode];
@@ -133,11 +129,9 @@ class Fan extends GeneralClass {
 };
 
 /*class Home
-
     State :
         _address: string
         _devices: []
-
     Behaviour :
         getAddress(): string
         setAddress(string): void
@@ -163,10 +157,10 @@ class Home {
     addDevice(device) {
         this._devices.push(device);
     }
-    getDeviceByName(string) {
-        let selectedDevice;
+    getDeviceByName(name) {
+        let selectedDevice = null;
         this._devices.forEach((device) => {
-            if(device._name == string){
+            if(device.name == name){
                 selectedDevice = device;
             }
         });
@@ -175,20 +169,13 @@ class Home {
     getAllDevices() {
         return this._devices;
     }
-    deleteDeviceByNameFilter(string) {
-        this._devices = this._devices.filter((device) => device._name != string);
+    deleteDeviceByNameFilter(name) {
+        this._devices = this._devices.filter((device) => device.name != name);
     }
-    deleteDeviceByNameAnotherWay(string) {
-        this._devices.every((device) => {
-            if(device._name != string){
-                return true;
-            } else {
-                this._devices.splice(
-                    this._devices.indexOf(device), 
-                    this._devices.indexOf(device)
-                    )
-            }
-        });
+    deleteDeviceByNameAnotherWay(name) {
+        let indexDevice = this._devices.indexOf(this.getDeviceByName(name));
+        if(indexDevice !== -1) {
+            this._devices.splice(indexDevice, 1);
+        };
     }
 };
-
