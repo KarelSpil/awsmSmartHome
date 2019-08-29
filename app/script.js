@@ -2,7 +2,7 @@
 
 class GeneralClass {
     constructor(name) {
-        this.name = name;
+        this._name = name;
         this._status = false;
     }
     getStatus() {
@@ -18,7 +18,7 @@ class GeneralClass {
 
 /*Class RobotVacuumCleaner
     State :
-        name : String
+        _name : String
         _status : Boolean
         _cleanMode : Boolean
         _statusGarbageBag : Number
@@ -90,7 +90,7 @@ class RobotVacuumCleaner extends GeneralClass {
 
 /*Class Fan
     State :
-        name : String
+        _name : String
         _status : Boolean
         _mods : [String, String, String, .....]
         _currentMode: Number
@@ -160,7 +160,7 @@ class Home {
     getDeviceByName(name) {
         let selectedDevice = null;
         this._devices.forEach((device) => {
-            if(device.name == name){
+            if(device._name == name){
                 selectedDevice = device;
             }
         });
@@ -170,7 +170,7 @@ class Home {
         return this._devices;
     }
     deleteDeviceByNameFilter(name) {
-        this._devices = this._devices.filter((device) => device.name != name);
+        this._devices = this._devices.filter((device) => device._name != name);
     }
     deleteDeviceByNameAnotherWay(name) {
         let indexDevice = this._devices.indexOf(this.getDeviceByName(name));
