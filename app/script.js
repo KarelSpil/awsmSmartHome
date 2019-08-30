@@ -5,7 +5,13 @@ class GeneralClass {
         this._name = name;
         this._status = false;
     }
-    getStatus() {
+    get name() {
+    	return this._name;
+    }
+    set name() {
+    	this._name = name;
+    }
+    get status() {
         return this._status;
     }
     on() {
@@ -160,7 +166,7 @@ class Home {
     getDeviceByName(name) {
         let selectedDevice = null;
         this._devices.forEach((device) => {
-            if(device._name == name){
+            if(device.name == name){
                 selectedDevice = device;
             }
         });
@@ -170,7 +176,7 @@ class Home {
         return this._devices;
     }
     deleteDeviceByNameFilter(name) {
-        this._devices = this._devices.filter((device) => device._name != name);
+        this._devices = this._devices.filter((device) => device.name != name);
     }
     deleteDeviceByNameAnotherWay(name) {
         let indexDevice = this._devices.indexOf(this.getDeviceByName(name));
