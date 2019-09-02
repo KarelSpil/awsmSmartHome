@@ -6,10 +6,10 @@ class GeneralClass {
         this._status = false;
     }
     get name() {
-    	return this._name;
+        return this._name;
     }
-    set name() {
-    	this._name = name;
+    set name(name) {
+        this._name = name;
     }
     get status() {
         return this._status;
@@ -51,10 +51,10 @@ class RobotVacuumCleaner extends GeneralClass {
         this._statusGarbageBag = 0;
         this._statusBattery = 100;
     }
-    getStatusCleanMode() {
+    get statusCleanMode() {
         return this._cleanMode;
     }
-    setStatusCleanMode(bool) {
+    set statusCleanMode(bool) {
         if(typeof bool == 'boolean' && this._cleanMode != bool) {
             this._cleanMode = bool;
         }
@@ -62,7 +62,7 @@ class RobotVacuumCleaner extends GeneralClass {
             this._cleanMode = false;
         }
     }
-    getStatusGarbageBag() {
+    get statusGarbageBag() {
         return this._statusGarbageBag;
     }
     addTrash(addTrashPercent) {
@@ -81,7 +81,7 @@ class RobotVacuumCleaner extends GeneralClass {
     cleanGarbageBag() {
         this._statusGarbageBag = 0;
     }
-    getStatusBatteryCharge() {
+    get statusBatteryCharge() {
         return this._statusBattery;
     }
     goToCharge(batteryPercent) {
@@ -115,7 +115,7 @@ class Fan extends GeneralClass {
         this._mods = ['Speed 1', 'Speed 2', 'Speed 3', 'Speed 4', 'Speed 5'];
         this._currentMode = 0;
     }
-    getCurrentMode() {
+    get currentMode() {
         return this._mods[this._currentMode];
     }
     nextMode() {
@@ -148,16 +148,16 @@ class Fan extends GeneralClass {
         deleteDeviceByName(string): void */
 
 class Home {
-    constructor() {
-        this._address = '';
+    constructor(address) {
+        this._address = address;
         this._devices = [];
     }
     get address() {
         return this._address;
     }
-    set address(value) {
-        if(typeof value == 'string') {
-            this._address = value;
+    set address(address) {
+        if(typeof address == 'string') {
+            this._address = address;
         }
     }
     addDevice(device) {
@@ -172,7 +172,7 @@ class Home {
         });
         return selectedDevice;
     }
-    getAllDevices() {
+    get allDevices() {
         return this._devices;
     }
     deleteDeviceByNameFilter(name) {
